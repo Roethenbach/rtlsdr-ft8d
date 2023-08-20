@@ -639,27 +639,18 @@ void webClusterSpots(uint32_t n_results) {
     }
 }
 
-
 void printSpots(uint32_t n_results) {
     if (n_results == 0) {
-        printf("No spot %04d-%02d-%02d %02d:%02dz\n",
-               rx_state.gtm->tm_year + 1900,
-               rx_state.gtm->tm_mon + 1,
-               rx_state.gtm->tm_mday,
-               rx_state.gtm->tm_hour,
-               rx_state.gtm->tm_min);
-
         return;
     }
-
-    printf("  Score     Freq       Call    Loc\n");
     for (uint32_t i = 0; i < n_results; i++) {
-        printf("     %2d %8d %10s %6s\n",
+        printf("FT8;%d;%d;%s;%s\n",
                dec_results[i].snr,
                dec_results[i].freq + dec_options.freq,
                dec_results[i].call,
                dec_results[i].loc);
     }
+    fflush(stdout);
 }
 
 
